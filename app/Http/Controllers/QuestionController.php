@@ -26,7 +26,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $question = new Question();
+        return view('question.create')->with('question', $question);
     }
 
     /**

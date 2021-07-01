@@ -37,7 +37,6 @@ class Question extends Model
         if ($this->answers) {
             return "answered";
         }
-
         return "unanswered";
     }
 }
