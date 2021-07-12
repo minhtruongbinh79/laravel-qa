@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
-// use Parsedown;
 
 class QuestionController extends Controller
 {
@@ -64,6 +63,9 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
+        if (\Gate::denies('update-question', $question)) {
+            \abort(403, "Access denied");
+        }
         return view('question.edit', compact('question'));
     }
 
@@ -76,6 +78,9 @@ class QuestionController extends Controller
      */
     public function update(QuestionRequest $request, Question $question)
     {
+        if (\Gate::denies('update-question', $question)) {
+            \abort(403, "Access denied");
+        }
         $question->update($request->only('title', 'body'));
         return \redirect('/questions')->with('success', "Updated.");
     }
@@ -88,6 +93,9 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
+        if (\Gate::denies('delete-question', $question)) {
+            \abort(403, "Access denied");
+        }
         $question->delete();
 
         return \redirect('/questions')->with('success', "Deleted.");
