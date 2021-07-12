@@ -41,7 +41,7 @@ class QuestionController extends Controller
     {
         $request->user()->questions()->create($request->all());
 
-        return \redirect('/questions')->with('success', "Question submitted");
+        return \redirect('/questions')->with('success', "Question submitted.");
     }
 
     /**
@@ -76,7 +76,7 @@ class QuestionController extends Controller
     public function update(QuestionRequest $request, Question $question)
     {
         $question->update($request->only('title', 'body'));
-        return \redirect('/questions')->with('success', "Updated");
+        return \redirect('/questions')->with('success', "Updated.");
     }
 
     /**
@@ -87,6 +87,8 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+
+        return \redirect('/questions')->with('success', "Deleted.");
     }
 }
