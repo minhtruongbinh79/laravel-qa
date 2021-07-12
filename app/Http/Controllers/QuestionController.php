@@ -17,7 +17,7 @@ class QuestionController extends Controller
     {
         $questions = Question::with('user')->latest()->paginate(7);
 
-        return view('question.index')->with('questions', $questions);
+        return view('question.index', compact('questions'));
     }
 
     /**
@@ -28,7 +28,7 @@ class QuestionController extends Controller
     public function create()
     {
         $question = new Question();
-        return view('question.create')->with('question', $question);
+        return view('question.create', compact('question'));
     }
 
     /**
@@ -63,7 +63,7 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('question.edit', compact('question'));
     }
 
     /**
@@ -73,9 +73,10 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->only('title', 'body'));
+        return \redirect('/questions')->with('success', "Updated");
     }
 
     /**
