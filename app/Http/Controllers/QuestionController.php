@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
+// use Parsedown;
 
 class QuestionController extends Controller
 {
@@ -52,7 +53,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        return view('question.show', \compact('question'));
     }
 
     /**
