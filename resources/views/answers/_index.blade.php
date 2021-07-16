@@ -18,13 +18,10 @@
                             <a title="This answer is not useful" class="vote-down off">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-<<<<<<< HEAD
                             <a title="Mark as the best answer" 
                                 class="vote-accepted mt-2"
                                 onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit()"
                                 >
-=======
->>>>>>> lesson-19-b
                                 <i class="fas fa-check fa-2x"></i>
                             </a>
                             <form id="accept-answer-{{ $answer->id }}" action="{{ route('answers.accept', $answer->id) }}" method="POST" style="display:none;">
