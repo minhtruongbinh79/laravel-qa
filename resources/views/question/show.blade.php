@@ -54,6 +54,8 @@
         'answersCount' => $question->answers_count,
         'answers' => $question->answers
     ])
-    @include('answers._create')
+    @if (\Auth::id())
+        @include('answers._create')
+    @endif
 </div>
 @endsection
