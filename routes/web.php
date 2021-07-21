@@ -18,9 +18,7 @@ use App\Http\Controllers\VoteAnswerController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
+Route::get('/', [QuestionController::class, 'index']);
 
 Auth::routes();
 

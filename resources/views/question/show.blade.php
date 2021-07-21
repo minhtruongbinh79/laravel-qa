@@ -43,7 +43,7 @@
         'answersCount' => $question->answers_count,
         'answers' => $question->answers
     ])
-    @if (\Auth::id())
+    @if (!\Auth::guest())
         @include('answers._create')
     @endif
 </div>
